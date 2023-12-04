@@ -4,21 +4,15 @@ jobs:
   run:
     runs-on: [ubuntu-latest]
     steps:
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '16'
-      - uses: actions/checkout@v3
-      - uses: iterative/setup-cml@v1
-        with:
-          sudo: false
+      - uses: actions/checkout@v2
+      - uses: iterative/setup-cml@v2
       - name: Train model
         env:
-          REPO_TOKEN: ${{ secrets.ML_TOKEN }}
+          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          env | grep REPO_TOKEN
-          echo $REPO_TOKEN
           python -V
           pip install -r requirements.txt
           python wine_linear_regression_test.py
+          cat metrics.txt 
           cat metrics.txt >> report.md
           cml create comment report.md

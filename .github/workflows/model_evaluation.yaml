@@ -13,7 +13,7 @@ jobs:
           sudo: false
       - name: Train model
         env:
-          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO_TOKEN: ${{ secrets.ML_TOKEN }}
         run: |
           python -V
           pip install -r requirements.txt

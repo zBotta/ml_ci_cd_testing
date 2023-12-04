@@ -16,8 +16,7 @@ jobs:
           REPO_TOKEN: ${{ secrets.ML_TOKEN }}
         run: |
           env | grep REPO_TOKEN
-          echo -n "$REPO_TOKEN | md5sum"
-          echo -n "my_username:my_app_password" | base64
+          echo $REPO_TOKEN
           python -V
           pip install -r requirements.txt
           python wine_linear_regression_test.py
